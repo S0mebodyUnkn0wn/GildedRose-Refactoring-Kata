@@ -9,6 +9,11 @@ class Item {
 const sulfuras = 'Sulfuras, Hand of Ragnaros';
 const brie = 'Aged Brie';
 const backstage = 'Backstage passes to a TAFKAL80ETC concert';
+const conjured = 'Conjured';
+
+const conjuredDegradationRate = 2
+const pastSellInDegradationRate = 2
+
 
 const backstageThresholdA = {"sellIn": 5,  "change":3};
 const backstageThresholdB = {"sellIn": 10, "change":2};
@@ -52,12 +57,16 @@ class Shop {
     else
       qualityChange = -defaultQualityChange
 
+    if (item.name.startsWith(conjured)){
+      qualityChange *= conjuredDegradationRate;
+    }
+
     if (item.sellIn <= 0) {
       if (item.name == backstage) {
         qualityChange = -item.quality
       }
       else {
-        qualityChange*=2
+        qualityChange *= pastSellInDegradationRate
       }
     }
 
