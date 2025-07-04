@@ -17,7 +17,7 @@ class Shop {
   updateQuality() {
     for (let item of this.items){
 
-      if (item.name == sulfuras) return;
+      if (item.name == sulfuras) continue;
 
       if (item.name != brie && item.name != backstage) {
         this.adjustQuality(item, -1)
