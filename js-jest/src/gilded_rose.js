@@ -32,6 +32,9 @@ class Shop {
           }
         }
       }
+
+      item.sellIn --;
+
       if (item.sellIn < 0) {
         if (item.name != brie) {
           if (item.name != backstage) {
@@ -44,7 +47,6 @@ class Shop {
         }
       }
       
-      item.sellIn --;
 
     }
 
