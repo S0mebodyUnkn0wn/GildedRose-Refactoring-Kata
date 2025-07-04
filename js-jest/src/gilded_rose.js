@@ -17,36 +17,25 @@ class Shop {
   updateQuality() {
     for (let item of this.items){
 
+      if (item.name == sulfuras) return;
+
       if (item.name != brie && item.name != backstage) {
-        if (item.quality > 0) {
-          if (item.name != sulfuras) {
-            this.adjustQuality(item, -1)
-          }
-        }
+        this.adjustQuality(item, -1)
       } else {
-        if (item.quality < 50) {
-          this.adjustQuality(item, 1)
-          if (item.name == backstage) {
-            if (item.sellIn < 11) {
-              this.adjustQuality(item, 1)
-            }
-            if (item.sellIn < 6) {
-              this.adjustQuality(item, 1)
-            }
+        this.adjustQuality(item, 1)
+        if (item.name == backstage) {
+          if (item.sellIn < 11) {
+            this.adjustQuality(item, 1)
+          }
+          if (item.sellIn < 6) {
+            this.adjustQuality(item, 1)
           }
         }
-      }
-      if (item.name != sulfuras) {
-        item.sellIn = item.sellIn - 1;
       }
       if (item.sellIn < 0) {
         if (item.name != brie) {
           if (item.name != backstage) {
-            if (item.quality > 0) {
-              if (item.name != sulfuras) {
-                this.adjustQuality(item, -1)
-              }
-            }
+            this.adjustQuality(item, -1)
           } else {
             this.adjustQuality(item, -item.quality)
           }
@@ -54,6 +43,9 @@ class Shop {
           this.adjustQuality(item, 1)
         }
       }
+      
+      item.sellIn --;
+
     }
 
     return this.items;
