@@ -34,22 +34,19 @@ class Shop {
       else
         qualityChange = -1
 
-      this.adjustQuality(item,qualityChange)
 
       item.sellIn --;
 
       if (item.sellIn < 0) {
-        if (item.name != brie) {
-          if (item.name != backstage) {
-            this.adjustQuality(item, -1)
-          } else {
-            this.adjustQuality(item, -item.quality)
+        if (item.name == backstage) {
+          qualityChange=-item.quality
           }
-        } else {
-          this.adjustQuality(item, 1)
+        else {
+          qualityChange*=2
         }
       }
       
+      this.adjustQuality(item, qualityChange)
 
     }
 
