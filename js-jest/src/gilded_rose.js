@@ -20,22 +20,18 @@ class Shop {
       if (item.name != brie && item.name != backstage) {
         if (item.quality > 0) {
           if (item.name != sulfuras) {
-            item.quality = item.quality - 1;
+            this.adjustQuality(item, -1)
           }
         }
       } else {
         if (item.quality < 50) {
-          item.quality = item.quality + 1;
+          this.adjustQuality(item, 1)
           if (item.name == backstage) {
             if (item.sellIn < 11) {
-              if (item.quality < 50) {
-                item.quality = item.quality + 1;
-              }
+              this.adjustQuality(item, 1)
             }
             if (item.sellIn < 6) {
-              if (item.quality < 50) {
-                item.quality = item.quality + 1;
-              }
+              this.adjustQuality(item, 1)
             }
           }
         }
@@ -48,22 +44,29 @@ class Shop {
           if (item.name != backstage) {
             if (item.quality > 0) {
               if (item.name != sulfuras) {
-                item.quality = item.quality - 1;
+                this.adjustQuality(item, -1)
               }
             }
           } else {
-            item.quality = item.quality - item.quality;
+            this.adjustQuality(item, -item.quality)
           }
         } else {
-          if (item.quality < 50) {
-            item.quality = item.quality + 1;
-          }
+          this.adjustQuality(item, 1)
         }
       }
     }
 
     return this.items;
   }
+
+  adjustQuality(item, amount) {
+    if (item.quality >= 50 || item.quality <= 0) {
+      return;
+    } 
+
+    item.quality = item.quality + amount;
+  }
+
 }
 
 module.exports = {
