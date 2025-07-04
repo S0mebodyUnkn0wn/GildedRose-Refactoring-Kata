@@ -115,3 +115,22 @@ describe("Sulfuras", function() {
 
   });
 });
+
+describe("Conjured", function() {
+
+  it("should degrade at 2x speed", function() {
+
+    const gildedRose = new Shop([new Item("Conjured foo", 1, 20)])
+
+    let items = gildedRose.updateQuality();
+
+    expect(items[0].quality).toBe(18);
+    items = gildedRose.updateQuality();
+    expect(items[0].quality).toBe(14);
+
+
+  });
+
+
+
+});
