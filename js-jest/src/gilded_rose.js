@@ -19,19 +19,22 @@ class Shop {
 
       if (item.name == sulfuras) continue;
 
-      if (item.name != brie && item.name != backstage) {
-        this.adjustQuality(item, -1)
-      } else {
-        this.adjustQuality(item, 1)
-        if (item.name == backstage) {
-          if (item.sellIn < 11) {
-            this.adjustQuality(item, 1)
-          }
-          if (item.sellIn < 6) {
-            this.adjustQuality(item, 1)
-          }
-        }
+
+      let qualityChange;
+
+      if (item.name == backstage) {
+        if (item.sellIn < 6)
+          qualityChange = 3
+        else if (item.sellIn < 11)
+          qualityChange = 2
+        else qualityChange = 1
       }
+      else if (item.name == brie)
+        qualityChange = 1 
+      else
+        qualityChange = -1
+
+      this.adjustQuality(item,qualityChange)
 
       item.sellIn --;
 
