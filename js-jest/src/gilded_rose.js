@@ -9,6 +9,7 @@ class Item {
 const sulfuras = 'Sulfuras, Hand of Ragnaros';
 const brie = 'Aged Brie';
 const backstage = 'Backstage passes to a TAFKAL80ETC concert';
+
 const backstageThresholdA = {"sellIn": 5,  "change":3};
 const backstageThresholdB = {"sellIn": 10, "change":2};
 
@@ -53,7 +54,7 @@ class Shop {
 
     if (item.sellIn <= 0) {
       if (item.name == backstage) {
-        qualityChange=-item.quality
+        qualityChange = -item.quality
       }
       else {
         qualityChange*=2
@@ -62,6 +63,7 @@ class Shop {
 
     if (item.quality + qualityChange > qualUpperLimit) return qualUpperLimit - item.quality;
     if (item.quality + qualityChange < qualLowerLimit) return qualLowerLimit - item.quality;
+
     return qualityChange
   }
 
